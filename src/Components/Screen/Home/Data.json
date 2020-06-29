@@ -1,0 +1,40 @@
+{
+    "Data":[
+        {
+            "id": 1,
+            "img":"https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"Sedekah Jariyah 10.000 Qur'an untuk Korban Bencana",
+            "donasi":"Rp.0 from Rp.180.000.000"
+        },
+        {
+            "id": 2,
+            "img":"https://imgix.kitabisa.com/544006cb-5118-42c8-ab02-82aec45ae317.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"Sembako Bagi Dhaufa , Jamaah Masjid Terdampak Covid",
+            "donasi":"Rp.0 from Rp.120.000.000"
+        },
+        {
+            "id": 3,
+            "img":"https://imgix.kitabisa.com/32b1b476-eb27-45ee-aad6-d3a983d328c6.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"Lawan Corona, Sembako untuk Pekerja Harian",
+            "donasi":"Rp.0 from Rp.180.000.000"
+        },
+        {
+            "id": 4,
+            "img":"https://imgix.kitabisa.com/db10484e-eb02-4b4f-a885-54d4f5ae41d4.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"Air Bersih Untuk Hadapi Kekeringan Di Pelosok Solo",
+            "donasi":"Rp.0 from Rp.500.000.000"
+        },
+        {
+            "id": 5,
+            "img":"https://imgix.kitabisa.com/0d5a7b62-0060-489a-af2f-ae380ccde1d3.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"Bantu Palestina Untuk Hadapi Musim Dingin yang mematikan",
+            "donasi":"Rp.0 from Rp.1.000.000.000"
+        },
+        {
+            "id": 6,
+            "img":"https://imgix.kitabisa.com/bae38997-a22f-4517-a08c-cac3a25c99d6.jpg?ar=16:9&w=664&auto=format,compress",
+            "title":"bantu Santri Yatim di Maluku untuk kemabli Sekolah",
+            "donasi":"Rp.0 from Rp.700.000.000"
+        }
+    ]
+}
