@@ -9,7 +9,9 @@ import Data from "./Data.json";
 
 const Home = () => {
   return (
-    <ScrollView>
+    <ScrollView
+    showsVerticalScrollIndicator={false}
+    >
       <View style={Styles.viewHome}>
         <View style={Styles.viewTextMP}>
           <Text style={Styles.text1}>Most Popular</Text>

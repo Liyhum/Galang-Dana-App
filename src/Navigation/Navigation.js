@@ -39,7 +39,7 @@ function DrawerNav ({navigation}) {
     }
       drawerType="back"
       >
-        <Drawer.Screen name="Drawer" component={props =><NavigationBottom {...props}/> }/>
+        <Drawer.Screen name="Drawer" component={NavigationBottom}/>
         <Drawer.Screen name = "Akun" component={Akun}/>
         <Drawer.Screen name = "Setting" component={Setting}/>
       </Drawer.Navigator>
@@ -54,7 +54,7 @@ function onDrawer() {
       
   )
 }
-function NaviStack() {
+function NaviStack({navigation}) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -64,7 +64,6 @@ function NaviStack() {
           headerStyle: {
             backgroundColor: "#e6f2ed",
             elevation: 0,
-            height: "12%",
           },
           headerTitleStyle: {
             color: "#3EA898",
@@ -72,11 +71,12 @@ function NaviStack() {
             marginLeft: "14%",
           },
           headerLeft: () => (
-            <View style={{ marginTop: 25 }}>
+            <View >
               <Text style={{ marginLeft: 10, fontSize: 10, color: "#3EA898" }}>
                 <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo anda
               </Text>
-              <Text style={{ marginLeft: 10, color: "blue" }}>
+              <Text style={{ marginLeft: 10, color: "blue" }}
+              >
                 {" "}
                 Rp. 316.000
               </Text>
@@ -90,7 +90,6 @@ function NaviStack() {
               color="#3EA898"
               style={{
                 marginRight: 10,
-                marginTop: 55,
               }}
               onPress={() => navigation.toggleDrawer()}
             />
