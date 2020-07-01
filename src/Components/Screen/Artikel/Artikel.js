@@ -3,10 +3,19 @@ import { View, Image, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Styles } from "../../../Style/artikelStyle";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Progress from "react-native-progress";
-import { Style } from "../../../Style/loginStyle";
-import * as Font from "expo-font";
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import { AppLoading } from "expo";
 
 const Artikel = ({ navigation }) => {
+  let [fontsLoaded] = useFonts({
+    Inter_900Black,
+    "OpenSans-Bold": require("../../../../assets/fonts/OpenSans-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <ScrollView>
       <View style={{ flex: 1, flexDirection: "column" }}>
@@ -32,6 +41,7 @@ const Artikel = ({ navigation }) => {
             <Text style={Styles.textTitle}>
               Sedekah Jariyah 10.000 Qur'an untuk Koraban Bencana
             </Text>
+            <Text style={{ fontFamily: "Inter_900Black" }}>Inter Black</Text>
             <Text style={{ fontSize: 10 }}>
               <Text style={Styles.text1}> Rp.0</Text> from
               <Text style={Styles.text2}> 180.000.000</Text>
