@@ -15,6 +15,7 @@ import { FontAwesome, AntDesign, MaterialIcons,Fontisto } from "@expo/vector-ico
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import { AsyncStorage,View,Text} from "react-native";
 import {State, Dispatch} from '../../App';
+import {Data} from '../Assets/tempData'
 import Animated from 'react-native-reanimated'
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -54,7 +55,21 @@ function onDrawer() {
       
   )
 }
+function convertToRupiah(angka)
+{
+	var rupiah = '';		
+	var angkarev = angka.toString().split('').reverse().join('');
+	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+	return rupiah.split('',rupiah.length-1).reverse().join('');
+}
 function NaviStack({navigation}) {
+  const [data,setData] = React.useState(Data)
+  const data2 = data
+  let saldo = 0
+  data2.forEach((item)=>{
+    saldo += item.saldo
+  })
+  const Saldo2 = convertToRupiah(saldo)
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -78,7 +93,7 @@ function NaviStack({navigation}) {
               <Text style={{ marginLeft: 10, color: "blue" }}
               >
                 {" "}
-                Rp. 316.000
+                Rp. {Saldo2}
               </Text>
             </View>
           ),
@@ -126,7 +141,7 @@ function NaviStack2({navigation}) {
               }}
               onPress={() => navigation.toggleDrawer()}
               />
-              ),
+              ), 
         }}
       />
       <Stack.Screen name="Drawer" component={DrawerNav}/>
