@@ -65,4 +65,10 @@ export const Styles = StyleSheet.create({
     padding: "2%",
     borderRadius: 5,
   },
+  textTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    marginTop: "2%",
+    marginBottom: "2%",
+  },
 });
