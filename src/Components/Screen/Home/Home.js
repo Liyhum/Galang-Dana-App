@@ -4,14 +4,11 @@ import { Styles } from "../../../Style/homeStyle";
 import Carousel from "../../Carraousel/Carraousel";
 import { dummyData } from "../../Carraousel/data";
 import * as Progress from "react-native-progress";
-import { Style } from "../../../Style/loginStyle";
 import Data from "./Data.json";
 
 const Home = ({ navigation }) => {
   return (
-    <ScrollView
-    showsVerticalScrollIndicator={false}
-    >
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={Styles.viewHome}>
         <View style={Styles.viewTextMP}>
           <Text style={Styles.text1}>Most Popular</Text>
@@ -19,9 +16,7 @@ const Home = ({ navigation }) => {
         <View>
           <Carousel data={dummyData} />
         </View>
-
         <Text style={Styles.text1}>Most Recent</Text>
-
         <View style={Styles.viewCard}>
           {Data.Data.map((res) => (
             <View style={Styles.viewCard2}>

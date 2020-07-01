@@ -21,7 +21,7 @@ const Artikel = ({ navigation }) => {
             name={"arrow-left"}
             size={20}
             color="white"
-            style={{ position: "absolute", margin: "10%", marginLeft: "3%" }}
+            style={Styles.iconArrow}
             onPress={() => navigation.navigate("Home")}
           />
         </View>
@@ -30,11 +30,8 @@ const Artikel = ({ navigation }) => {
             <Text style={Styles.textTitle}>
               Sedekah Jariyah 10.000 Qur'an untuk Koraban Bencana
             </Text>
-            <Text style={{ fontFamily: "OpenSans_400Regular_Italic" }}>
-              Inter Black
-            </Text>
 
-            <Text style={{ fontSize: 10 }}>
+            <Text style={Styles.textNumDonate}>
               <Text style={Styles.text1}> Rp.0</Text> from
               <Text style={Styles.text2}> 180.000.000</Text>
             </Text>
@@ -44,7 +41,7 @@ const Artikel = ({ navigation }) => {
               progress={0}
               width={200}
             />
-            <Text style={{ fontSize: 10 }}>
+            <Text style={Styles.textNumDonate}>
               <Text style={{ fontSize: 20 }}>0</Text> donasi{" "}
               <Text style={{ fontSize: 20 }}>100</Text> hari lagi
             </Text>
@@ -54,11 +51,17 @@ const Artikel = ({ navigation }) => {
           </View>
           <View style={Styles.viewTextDonate}>
             <Text
-              style={{ marginBottom: "2%", fontWeight: "bold", fontSize: 20 }}
+              style={{
+                marginBottom: "2%",
+                fontSize: 20,
+                // fontFamily: "OpenSans_600SemiBold",
+              }}
             >
               Cerita
             </Text>
-            <Text>
+            <Text
+              style={{ fontFamily: "OpenSans_400Regular", color: "#4A5566" }}
+            >
               Berlokasi di Kecamatan Sukajaya, Kabupaten Bogor. Sebagian warga
               korban banjir besar di awal tahun 2020 lalu masih berusaha untuk
               bangkit dari bencana yang merusak sebagian besar rumah dan
@@ -77,7 +80,9 @@ const Artikel = ({ navigation }) => {
               }}
               resizeMode={"cover"}
             />
-            <Text>
+            <Text
+              style={{ fontFamily: "OpenSans_400Regular", color: "#4A5566" }}
+            >
               Sebanyak 163 unit hunian semantara untuk warga Desa Sukamulih,
               Pasir Madang dan Cileuksa sudah terbangun. Syukur, sebagian kecil
               dari mereka sudah memiliki tempat untuk tinggal dan hidup seperti

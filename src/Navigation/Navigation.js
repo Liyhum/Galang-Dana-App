@@ -16,6 +16,7 @@ import {
   AntDesign,
   MaterialIcons,
   Fontisto,
+  FontAwesome5,
 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AsyncStorage, View, Text } from "react-native";
@@ -75,10 +76,23 @@ function NaviStack({ navigation }) {
           },
           headerLeft: () => (
             <View>
-              <Text style={{ marginLeft: 10, fontSize: 10, color: "#3EA898" }}>
+              <Text
+                style={{
+                  marginLeft: 10,
+                  fontSize: 10,
+                  color: "#3EA898",
+                  // fontFamily: "OpenSans_600SemiBold",
+                }}
+              >
                 <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo anda
               </Text>
-              <Text style={{ marginLeft: 10, color: "blue" }}>
+              <Text
+                style={{
+                  marginLeft: 10,
+                  color: "blue",
+                  // fontFamily: "OpenSans_600SemiBold",
+                }}
+              >
                 {" "}
                 Rp. 316.000
               </Text>
@@ -137,7 +151,7 @@ function NaviStack2({ navigation }) {
         }}
       />
       <Stack.Screen name="Drawer" component={DrawerNav} />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Home"
         component={Home}
         options={{
@@ -148,7 +162,7 @@ function NaviStack2({ navigation }) {
             color: "white",
           },
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }
@@ -156,9 +170,9 @@ function NavigationBottom({ style }) {
   return (
     <Bottom.Navigator
       initialRouteName="Home"
-      activeColor="#3EA898"
-      inactiveColor="#009e86"
-      barStyle={{ backgroundColor: "#e6f2ed" }}
+      activeColor="white"
+      inactiveColor="white"
+      barStyle={{ backgroundColor: "#009e86" }}
       tabBarOptions={{
         tabStyle: {
           backgroundColor: "#e6f2ed",
@@ -171,8 +185,26 @@ function NavigationBottom({ style }) {
         },
       }}
     >
-      <Bottom.Screen name="Home" component={NaviStack} />
-      <Bottom.Screen name="Wallet" component={NaviStack2} />
+      <Bottom.Screen
+        name="Home"
+        component={NaviStack}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="home" color={"white"} size={20} />
+          ),
+        }}
+      />
+      <Bottom.Screen
+        name="Wallet"
+        component={NaviStack2}
+        options={{
+          tabBarLabel: "Wallet",
+          tabBarIcon: ({ color, size }) => (
+            <Fontisto name="wallet" color={"white"} size={20} />
+          ),
+        }}
+      />
     </Bottom.Navigator>
   );
 }

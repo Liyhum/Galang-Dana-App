@@ -4,9 +4,10 @@ import { YellowBox, AsyncStorage } from "react-native";
 import Navigation from "./src/Navigation/Navigation";
 import {
   useFonts,
-  OpenSans_400Regular_Italic,
+  OpenSans_600SemiBold,
+  OpenSans_400Regular,
 } from "@expo-google-fonts/open-sans";
-import { AppLoading } from "expo";
+import { AppLoading, Font } from "expo";
 
 export const State = createContext();
 export const Dispatch = createContext();
@@ -14,7 +15,6 @@ export const Dispatch = createContext();
 const initState = {
   uid: false,
 };
-
 const reducer = (action, state) => {
   switch (action.type) {
     case "login":
@@ -31,7 +31,8 @@ const reducer = (action, state) => {
 
 const App = () => {
   let fontsLoaded = useFonts({
-    OpenSans_400Regular_Italic,
+    OpenSans_600SemiBold,
+    OpenSans_400Regular,
   });
 
   if (!fontsLoaded) {

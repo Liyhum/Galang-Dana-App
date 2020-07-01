@@ -16,6 +16,8 @@ const Setting = () => {
   }
 };
 
-export const Font = {
+const Font = {
   openSans: "OpenSans_400Regular_Italic",
 };
+
+export default Setting;
