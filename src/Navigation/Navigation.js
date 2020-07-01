@@ -42,24 +42,12 @@ function DrawerNav({ navigation }) {
         return <DrawerContent {...props} />;
       }}
       drawerType="back"
-<<<<<<< HEAD
     >
-      <Drawer.Screen
-        name="Drawer"
-        component={(props) => <NavigationBottom {...props} />}
-      />
+      <Drawer.Screen name="Drawer" component={NavigationBottom} />
       <Drawer.Screen name="Akun" component={Akun} />
       <Drawer.Screen name="Setting" component={Setting} />
     </Drawer.Navigator>
   );
-=======
-      >
-        <Drawer.Screen name="Drawer" component={NavigationBottom}/>
-        <Drawer.Screen name = "Akun" component={Akun}/>
-        <Drawer.Screen name = "Setting" component={Setting}/>
-      </Drawer.Navigator>
-  )
->>>>>>> 1de174a5b3e9dc6b672a1c5e344f8364ed2ebfc8
 }
 function onDrawer() {
   return (
@@ -69,7 +57,7 @@ function onDrawer() {
     </Stack.Navigator>
   );
 }
-function NaviStack({navigation}) {
+function NaviStack({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -86,12 +74,11 @@ function NaviStack({navigation}) {
             marginLeft: "14%",
           },
           headerLeft: () => (
-            <View >
+            <View>
               <Text style={{ marginLeft: 10, fontSize: 10, color: "#3EA898" }}>
                 <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo anda
               </Text>
-              <Text style={{ marginLeft: 10, color: "blue" }}
-              >
+              <Text style={{ marginLeft: 10, color: "blue" }}>
                 {" "}
                 Rp. 316.000
               </Text>
