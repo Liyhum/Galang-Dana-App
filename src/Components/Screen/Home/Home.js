@@ -7,7 +7,7 @@ import * as Progress from "react-native-progress";
 import { Style } from "../../../Style/loginStyle";
 import Data from "./Data.json";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={Styles.viewHome}>
@@ -30,7 +30,7 @@ const Home = () => {
                     uri: res.img,
                   }}
                 />
-                <Text>{res.title}</Text>
+                <Text style={Styles.textTitle}>{res.title}</Text>
                 <Progress.Bar
                   style={{ width: "90%" }}
                   color="green"
@@ -38,7 +38,10 @@ const Home = () => {
                   width={200}
                 />
                 <Text style={Styles.textDonate}>{res.donasi} </Text>
-                <TouchableOpacity style={Styles.btnDonate}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Artikel")}
+                  style={Styles.btnDonate}
+                >
                   <Text style={Styles.textDonate2}>Donate</Text>
                 </TouchableOpacity>
               </View>

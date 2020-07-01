@@ -7,52 +7,58 @@ import Login from "../Components/Screen/Login/Login";
 import Register from "../Components/Screen/Register/Register";
 import Home from "../Components/Screen/Home/Home";
 import Wallet from "../Components/Screen/Wallet";
-import Akun from '../Components/Screen/Akun';
+import Akun from "../Components/Screen/Akun";
 import ForgotPassword from "../Components/Screen/ForgotPassword/ForgotPassword";
-import Setting from '../Components/Screen/Settings'
-import {DrawerContent} from '../Components/Screen/ContentDrawer'
-import { FontAwesome, AntDesign, MaterialIcons,Fontisto } from "@expo/vector-icons";
-import {createDrawerNavigator} from '@react-navigation/drawer'
-import { AsyncStorage,View,Text} from "react-native";
-import {State, Dispatch} from '../../App';
-import Animated from 'react-native-reanimated'
+import Setting from "../Components/Screen/Settings";
+import { DrawerContent } from "../Components/Screen/ContentDrawer";
+import {
+  FontAwesome,
+  AntDesign,
+  MaterialIcons,
+  Fontisto,
+} from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { AsyncStorage, View, Text } from "react-native";
+import { State, Dispatch } from "../../App";
+import Animated from "react-native-reanimated";
+import Artikel from "../Components/Screen/Artikel/Artikel";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
 
-function DrawerNav ({navigation}) {
-  const [progress,setProgress] = React.useState(new Animated.Value(0))
-  const scale = Animated.interpolate(progress,{
-    inputRange :[0,1],
-    outputRange : [1,0]
-  })
-  const screenScale = {transfrom : [{scale}]}
-  return(
-      <Drawer.Navigator
+function DrawerNav({ navigation }) {
+  const [progress, setProgress] = React.useState(new Animated.Value(0));
+  const scale = Animated.interpolate(progress, {
+    inputRange: [0, 1],
+    outputRange: [1, 0],
+  });
+  const screenScale = { transfrom: [{ scale }] };
+  return (
+    <Drawer.Navigator
       initialRouteName="RightDrawer"
       drawerPosition="right"
-      drawerContent={props =>{
-        setProgress(props.progress)
-        return <DrawerContent  {...props}
-        />
-      }
-    }
+      drawerContent={(props) => {
+        setProgress(props.progress);
+        return <DrawerContent {...props} />;
+      }}
       drawerType="back"
-      >
-        <Drawer.Screen name="Drawer" component={props =><NavigationBottom {...props}/> }/>
-        <Drawer.Screen name = "Akun" component={Akun}/>
-        <Drawer.Screen name = "Setting" component={Setting}/>
-      </Drawer.Navigator>
-  )
+    >
+      <Drawer.Screen
+        name="Drawer"
+        component={(props) => <NavigationBottom {...props} />}
+      />
+      <Drawer.Screen name="Akun" component={Akun} />
+      <Drawer.Screen name="Setting" component={Setting} />
+    </Drawer.Navigator>
+  );
 }
 function onDrawer() {
-  return(
+  return (
     <Stack.Navigator>
-      <Stack.Screen name = "Akun" component={Akun}/>
-      <Stack.Screen name = "Setting" component={Setting}/>
+      <Stack.Screen name="Akun" component={Akun} />
+      <Stack.Screen name="Setting" component={Setting} />
     </Stack.Navigator>
-      
-  )
+  );
 }
 function NaviStack() {
   return (
@@ -98,10 +104,15 @@ function NaviStack() {
         }}
       />
       <Stack.Screen name="Wallet" component={Wallet} />
+      <Stack.Screen
+        name="Artikel"
+        component={Artikel}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
-function NaviStack2({navigation}) {
+function NaviStack2({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -115,7 +126,7 @@ function NaviStack2({navigation}) {
           headerTitleStyle: {
             color: "#3EA898",
             alignSelf: "center",
-            marginLeft:'14%'
+            marginLeft: "14%",
           },
           headerRight: () => (
             <FontAwesome
@@ -123,14 +134,14 @@ function NaviStack2({navigation}) {
               size={30}
               color="#3EA898"
               style={{
-                marginRight:10
+                marginRight: 10,
               }}
               onPress={() => navigation.toggleDrawer()}
-              />
-              ),
+            />
+          ),
         }}
       />
-      <Stack.Screen name="Drawer" component={DrawerNav}/>
+      <Stack.Screen name="Drawer" component={DrawerNav} />
       <Stack.Screen
         name="Home"
         component={Home}
@@ -146,13 +157,13 @@ function NaviStack2({navigation}) {
     </Stack.Navigator>
   );
 }
-function NavigationBottom({style}) {
+function NavigationBottom({ style }) {
   return (
     <Bottom.Navigator
       initialRouteName="Home"
       activeColor="#3EA898"
       inactiveColor="#009e86"
-      barStyle={{ backgroundColor: '#e6f2ed' }}
+      barStyle={{ backgroundColor: "#e6f2ed" }}
       tabBarOptions={{
         tabStyle: {
           backgroundColor: "#e6f2ed",
@@ -171,40 +182,44 @@ function NavigationBottom({style}) {
   );
 }
 function AuthLogin() {
-  return(
+  return (
     <Stack.Navigator>
-      <Stack.Screen name = "Login"component={Login} options={{headerShown:false}}/>
-      <Stack.Screen name = "Register"component={Register} options={{headerShown:false}}/>
-      <Stack.Screen name = "ForgotPassword"component={ForgotPassword} options={{headerShown:false}}/>
-    
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
-  )
+  );
 }
 function Navigation() {
-  const [isLoading,setLoading] = React.useState(true)
-  const [uid2, setUid] = React.useState('')
-  const state = React.useContext(State)
-  const dispatch = React.useContext(Dispatch)
-  React.useEffect(()=>{
-    setTimeout(()=>{
-      setLoading(!setLoading)
-      console.log(uid2,"Sukses")
-    },500)
-    AsyncStorage.getItem('uid').then(val=>{
-      setUid(val)
-    })
-  },[])
+  const [isLoading, setLoading] = React.useState(true);
+  const [uid2, setUid] = React.useState("");
+  const state = React.useContext(State);
+  const dispatch = React.useContext(Dispatch);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(!setLoading);
+      console.log(uid2, "Sukses");
+    }, 500);
+    AsyncStorage.getItem("uid").then((val) => {
+      setUid(val);
+    });
+  }, []);
 
   return (
     <NavigationContainer>
-          {state.uid ? (
-          <DrawerNav/> 
-          ) : uid2? (
-            <DrawerNav/> 
-          ) :(
-            <AuthLogin/>
-          )
-        }
+      {state.uid ? <DrawerNav /> : uid2 ? <DrawerNav /> : <AuthLogin />}
     </NavigationContainer>
   );
 }
