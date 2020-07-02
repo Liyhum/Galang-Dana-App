@@ -23,6 +23,7 @@ import { AsyncStorage, View, Text } from "react-native";
 import { State, Dispatch } from "../../App";
 import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
+import Donasi from "../Components/Screen/Donasi/Donasi";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
@@ -113,6 +114,7 @@ function NaviStack({ navigation }) {
         }}
       />
       <Stack.Screen name="Wallet" component={Wallet} />
+      <Stack.Screen name="Donasi" component={Donasi} />
       <Stack.Screen
         name="Artikel"
         component={Artikel}
@@ -151,7 +153,8 @@ function NaviStack2({ navigation }) {
         }}
       />
       <Stack.Screen name="Drawer" component={DrawerNav} />
-      {/* <Stack.Screen
+
+      <Stack.Screen
         name="Home"
         component={Home}
         options={{
@@ -162,7 +165,7 @@ function NaviStack2({ navigation }) {
             color: "white",
           },
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }

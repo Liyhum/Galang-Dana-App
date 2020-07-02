@@ -45,7 +45,10 @@ const Artikel = ({ navigation }) => {
               <Text style={{ fontSize: 20 }}>0</Text> donasi{" "}
               <Text style={{ fontSize: 20 }}>100</Text> hari lagi
             </Text>
-            <TouchableOpacity style={Styles.btnDonate}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Donasi")}
+              style={Styles.btnDonate}
+            >
               <Text style={Styles.textBtnDonate}>Donate Now</Text>
             </TouchableOpacity>
           </View>
@@ -54,7 +57,7 @@ const Artikel = ({ navigation }) => {
               style={{
                 marginBottom: "2%",
                 fontSize: 20,
-                // fontFamily: "OpenSans_600SemiBold",
+                fontFamily: "OpenSans_600SemiBold",
               }}
             >
               Cerita
@@ -93,6 +96,29 @@ const Artikel = ({ navigation }) => {
               Kecamatan Sukajaya ini juga ada beberapa pesantren yang sangat
               membutuhkan mushaf Qur'an maupun Iqro." Ungkap Ustadz Bubun yang
               biasa mengajar ngaji anak anak.
+            </Text>
+          </View>
+          <View style={Styles.viewTextDonate}>
+            <Text
+              style={{
+                fontFamily: "OpenSans_600SemiBold",
+                marginBottom: "2%",
+                fontSize: 20,
+              }}
+            >
+              Donasi (0)
+            </Text>
+
+            <Text
+              style={{
+                textAlign: "center",
+                margin: 30,
+                color: "#4A5566",
+                fontFamily: "OpenSans_600SemiBold",
+              }}
+            >
+              {" "}
+              Tidak ada yang donasi
             </Text>
           </View>
         </View>
