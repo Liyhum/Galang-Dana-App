@@ -1,21 +1,45 @@
 import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import Data from "./Data.json";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Styles } from "../../../Style/donasiStyle";
 
-const Donasi = () => {
+const Donasi = ({ navigation }) => {
+  const [list, setList] = React.useState(false);
+  const [id, setId] = React.useState("");
+
+  const handleList = (res) => {
+    if (res.id) {
+      setList(true);
+      setId(res.id);
+      console.log("list", list);
+    }
+  };
+
   return (
-    <ScrollView>
-      <View style={{ margin: 5 }}>
+    <View>
+      <View style={Styles.viewHeader}>
+        <View style={Styles.viewTitlePembayaran}>
+          <FontAwesome5
+            style={{ position: "absolute" }}
+            name="arrow-left"
+            size={20}
+            color="#3EA898"
+          />
+          <Text style={Styles.textDonasi}>Donasi</Text>
+          <Text style={Styles.textPembayaran}>Metode Pembayaran</Text>
+        </View>
+      </View>
+      <View style={Styles.viewBodyList}>
         {Data.Data.map((res) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleList(res)}>
             <View
               key={res.id}
-              style={{
-                flexDirection: "row",
-                backgroundColor: "white",
-                padding: "4%",
-                marginTop: "1%",
-              }}
+              style={
+                res.id === id && list === true
+                  ? Styles.viewList2
+                  : Styles.viewList
+              }
             >
               <Image
                 style={{ width: 30, height: 30 }}
@@ -34,9 +58,20 @@ const Donasi = () => {
             </View>
           </TouchableOpacity>
         ))}
-        <View style={{ height: "100%" }}></View>
+        <View style={{ flex: 1 }}></View>
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity
+            disabled={id && list === true ? false : true}
+            style={id && list === true ? Styles.btnKonfir : Styles.btnKonfir2}
+            onPress={() => navigation.navigate("Pembayaran")}
+          >
+            <View>
+              <Text style={Styles.textKonfir}>Konfirmasi</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

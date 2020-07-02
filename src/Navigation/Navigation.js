@@ -11,19 +11,15 @@ import Akun from "../Components/Screen/Akun";
 import ForgotPassword from "../Components/Screen/ForgotPassword/ForgotPassword";
 import Setting from "../Components/Screen/Settings";
 import { DrawerContent } from "../Components/Screen/ContentDrawer";
-import {
-  FontAwesome,
-  AntDesign,
-  MaterialIcons,
-  Fontisto,
-  FontAwesome5,
-} from "@expo/vector-icons";
+import { FontAwesome, Fontisto, FontAwesome5 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AsyncStorage, View, Text } from "react-native";
 import { State, Dispatch } from "../../App";
 import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
 import Donasi from "../Components/Screen/Donasi/Donasi";
+import Pembayaran from "../Components/Screen/Pembayaran/Pembayaran";
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
@@ -48,6 +44,17 @@ function DrawerNav({ navigation }) {
       <Drawer.Screen name="Drawer" component={NavigationBottom} />
       <Drawer.Screen name="Akun" component={Akun} />
       <Drawer.Screen name="Setting" component={Setting} />
+      <Drawer.Screen name="Donasi" component={Donasi} />
+      <Drawer.Screen
+        name="Pembayaran"
+        options={{ headerShown: false }}
+        component={Pembayaran}
+      />
+      <Drawer.Screen
+        name="Artikel"
+        component={Artikel}
+        options={{ headerShown: false }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -114,12 +121,6 @@ function NaviStack({ navigation }) {
         }}
       />
       <Stack.Screen name="Wallet" component={Wallet} />
-      <Stack.Screen name="Donasi" component={Donasi} />
-      <Stack.Screen
-        name="Artikel"
-        component={Artikel}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 }
