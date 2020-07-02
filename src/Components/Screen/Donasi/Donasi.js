@@ -10,7 +10,7 @@ const Donasi = ({ navigation }) => {
 
   const handleList = (res) => {
     if (res.id) {
-      setList(true);
+      setList(!list);
       setId(res.id);
       console.log("list", list);
     }
@@ -25,6 +25,7 @@ const Donasi = ({ navigation }) => {
             name="arrow-left"
             size={20}
             color="#3EA898"
+            onPress={() => navigation.navigate("artikel")}
           />
           <Text style={Styles.textDonasi}>Donasi</Text>
           <Text style={Styles.textPembayaran}>Metode Pembayaran</Text>
