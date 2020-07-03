@@ -25,7 +25,7 @@ const Donasi = ({ navigation }) => {
             name="arrow-left"
             size={20}
             color="#3EA898"
-            onPress={() => navigation.navigate("artikel")}
+            onPress={() => navigation.navigate("Artikel")}
           />
           <Text style={Styles.textDonasi}>Donasi</Text>
           <Text style={Styles.textPembayaran}>Metode Pembayaran</Text>
