@@ -1,12 +1,12 @@
 import React from 'react';
 import { View,Text } from "react-native";
-import styles from '../../Style/homeStyle'
+import styles from '../../Style/settingStyle'
 
-const Akun = () =>{
+const Settings = () =>{
     return(
         <View style={styles.viewHome}>
-            <Text>Akun</Text>
+            <Text>Settings</Text>
         </View>
     )
 }
-export default Akun
+export default Settings
