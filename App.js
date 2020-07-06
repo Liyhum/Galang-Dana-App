@@ -4,14 +4,9 @@ import { YellowBox, AsyncStorage } from "react-native";
 import Navigation from "./src/Navigation/Navigation";
 import {
   useFonts,
-<<<<<<< HEAD
-  OpenSans_600SemiBold,
-  OpenSans_400Regular,
-=======
   OpenSans_400Regular_Italic,
   OpenSans_600SemiBold,
-  OpenSans_400Regular
->>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
+  OpenSans_400Regular,
 } from "@expo-google-fonts/open-sans";
 import { AppLoading, Font } from "expo";
 import { HomeProvider } from "./src/Context/HomeContext";
@@ -38,14 +33,9 @@ const reducer = (action, state) => {
 
 const App = () => {
   let fontsLoaded = useFonts({
-<<<<<<< HEAD
-    OpenSans_600SemiBold,
-    OpenSans_400Regular,
-=======
     OpenSans_400Regular_Italic,
     OpenSans_600SemiBold,
-    OpenSans_400Regular
->>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
+    OpenSans_400Regular,
   });
 
   if (!fontsLoaded) {

@@ -52,9 +52,9 @@ const Topup = ({ navigation }) => {
       setRefresh(true);
     }, 500);
     console.log(all);
-    if(value <= 1){
-      alert('Masukan Jumlah saldo')
-    }else{
+    if (value <= 1) {
+      alert("Masukan Jumlah saldo");
+    } else {
       saldo.push({
         id: new Date(),
         name: "Wallet Transfer",
@@ -64,7 +64,7 @@ const Topup = ({ navigation }) => {
     setTimeout(() => {
       setRefresh(false);
     }, 3000);
-    setValue(0)
+    setValue(0);
   };
   React.useEffect(() => {
     console.log(saldo, "Asfasfsaf");
@@ -127,14 +127,14 @@ const Topup = ({ navigation }) => {
         </View>
         <View style={styles.viewAddHarga}>
           <TouchableOpacity
-          disabled={value === 0 ? true:false}
-          onPress={() => setValue(value - 500)}
+            disabled={value === 0 ? true : false}
+            onPress={() => setValue(value - 500)}
           >
-          <FontAwesome
-            name="minus"
-            size={20}
-            color="#3EA898"
-            style={{ padding: 20 }}
+            <FontAwesome
+              name="minus"
+              size={20}
+              color="#3EA898"
+              style={{ padding: 20 }}
             />
           </TouchableOpacity>
           <View style={styles.Addharga}>
@@ -146,7 +146,7 @@ const Topup = ({ navigation }) => {
               }}
             >
               {" "}
-              {jumlah}{" "}
+              {jumlah}
             </Text>
           </View>
 
@@ -177,25 +177,30 @@ const Topup = ({ navigation }) => {
 
         <View style={styles.ButtonSubmit}>
           {refresh === true ? (
-
-            <ActivityIndicator /> 
-             
+            <ActivityIndicator />
           ) : (
             <TouchableWithoutFeedback
               onPress={() => {
                 handleSubmitDana();
               }}
             >
-              <View style={{height:'100%',width:'100%',justifyContent: 'center',alignItems:'center'}}>
-              <Text
+              <View
                 style={{
-                  fontSize: 20,
-                  fontFamily: "OpenSans_600SemiBold",
-                  color: "#e6f2ed",
+                  height: "100%",
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                SUBMIT
-              </Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: "OpenSans_600SemiBold",
+                    color: "#e6f2ed",
+                  }}
+                >
+                  SUBMIT
+                </Text>
               </View>
             </TouchableWithoutFeedback>
           )}

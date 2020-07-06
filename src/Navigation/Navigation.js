@@ -10,8 +10,8 @@ import Wallet from "../Components/Screen/Wallet";
 import Akun from "../Components/Screen/Akun";
 import ForgotPassword from "../Components/Screen/ForgotPassword/ForgotPassword";
 import Setting from "../Components/Screen/Settings";
-import Topup from '../Components/Screen/TopUp'
-import TarikDana from '../Components/Screen/TarikDana/TarikDana'
+import Topup from "../Components/Screen/TopUp";
+import TarikDana from "../Components/Screen/TarikDana/TarikDana";
 import { DrawerContent } from "../Components/Screen/ContentDrawer";
 import { FontAwesome, Fontisto, FontAwesome5 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -19,13 +19,9 @@ import { AsyncStorage, View, Text } from "react-native";
 import { State, Dispatch } from "../../App";
 import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
-<<<<<<< HEAD
 import Donasi from "../Components/Screen/Donasi/Donasi";
+import { Data } from "../Assets/tempData";
 import Pembayaran from "../Components/Screen/Pembayaran/Pembayaran";
-
-=======
-import {Data} from '../Assets/tempData'
->>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
@@ -41,43 +37,35 @@ function DrawerNav({ navigation }) {
       drawerType="back"
     >
       <Drawer.Screen name="Drawer" component={NavigationBottom} />
+      <Drawer.Screen name="Artikel" component={Artikel} />
       <Drawer.Screen name="Akun" component={Akun} />
       <Drawer.Screen name="Setting" component={Setting} />
-<<<<<<< HEAD
-      <Drawer.Screen name="Donasi" component={Donasi} />
-      <Drawer.Screen
-        name="Pembayaran"
-        options={{ headerShown: false }}
-        component={Pembayaran}
-      />
-      <Drawer.Screen
-        name="Artikel"
-        component={Artikel}
-        options={{ headerShown: false }}
-      />
-=======
       <Drawer.Screen name="Home" component={NavigationBottom} />
       <Drawer.Screen name="Topup" component={Topup} />
       <Drawer.Screen name="TarikDana" component={TarikDana} />
->>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
+      <Drawer.Screen name="Donasi" component={Donasi} />
+      <Drawer.Screen name="Pembayaran" component={Pembayaran} />
     </Drawer.Navigator>
   );
 }
 
-function convertToRupiah(angka)
-{
-	var rupiah = '';		
-	var angkarev = angka.toString().split('').reverse().join('');
-	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
-	return rupiah.split('',rupiah.length-1).reverse().join('');
+function convertToRupiah(angka) {
+  var rupiah = "";
+  var angkarev = angka.toString().split("").reverse().join("");
+  for (var i = 0; i < angkarev.length; i++)
+    if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + ".";
+  return rupiah
+    .split("", rupiah.length - 1)
+    .reverse()
+    .join("");
 }
 function NaviStack({ navigation }) {
-  let Saldo2 = 0
-  const Data2 = Data
-  Data2.forEach((item)=>{
-    Saldo2 += item.saldo
-  })
-  const rupiah = convertToRupiah(Saldo2)
+  let Saldo2 = 0;
+  const Data2 = Data;
+  Data2.forEach((item) => {
+    Saldo2 += item.saldo;
+  });
+  const rupiah = convertToRupiah(Saldo2);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -145,7 +133,6 @@ function NaviStack2({ navigation }) {
           headerStyle: {
             backgroundColor: "#3EA898",
             elevation: 1,
-            
           },
           headerTitleStyle: {
             color: "#e6f2ed",
