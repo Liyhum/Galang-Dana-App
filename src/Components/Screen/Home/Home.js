@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Styles } from "../../../Style/homeStyle";
 import Carousel from "../../Carraousel/Carraousel";
@@ -7,15 +7,18 @@ import * as Progress from "react-native-progress";
 import Data from "./Data.json";
 import { HomeContext } from "../../../Context/HomeContext";
 
+
 const Home = ({ navigation }) => {
   const [homeIdContext, setHomeIdContext] = React.useContext(HomeContext);
   const handleSetIdHome = (res) => {
     console.log("res id home", homeIdContext);
     setHomeIdContext(res.id);
   };
-
+  
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView 
+    showsVerticalScrollIndicator={false}
+    >
       <View style={Styles.viewHome}>
         <View style={Styles.viewTextMP}>
           <Text style={Styles.text1}>Most Popular </Text>
