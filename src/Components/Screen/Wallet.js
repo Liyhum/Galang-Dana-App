@@ -65,10 +65,6 @@ const Wallet = ({ navigation }) => {
   const [data, setData] = useState(Data);
   const saldo = data;
 
-  useEffect(() => {
-    getData();
-  }, [data]);
-
   let jumlah = 0;
   saldo.forEach((item) => (jumlah += item.saldo));
   const handle = () => {
