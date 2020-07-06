@@ -10,21 +10,18 @@ import Wallet from "../Components/Screen/Wallet";
 import Akun from "../Components/Screen/Akun";
 import ForgotPassword from "../Components/Screen/ForgotPassword/ForgotPassword";
 import Setting from "../Components/Screen/Settings";
-import Topup from '../Components/Screen/TopUp'
-import TarikDana from '../Components/Screen/TarikDana/TarikDana'
+import Topup from "../Components/Screen/TopUp";
+import TarikDana from "../Components/Screen/TarikDana/TarikDana";
 import { DrawerContent } from "../Components/Screen/ContentDrawer";
-import {
-  FontAwesome,
-  AntDesign,
-  MaterialIcons,
-  Fontisto,
-} from "@expo/vector-icons";
+import { FontAwesome, Fontisto, FontAwesome5 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AsyncStorage, View, Text } from "react-native";
 import { State, Dispatch } from "../../App";
 import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
-import {Data} from '../Assets/tempData'
+import Donasi from "../Components/Screen/Donasi/Donasi";
+import { Data } from "../Assets/tempData";
+import Pembayaran from "../Components/Screen/Pembayaran/Pembayaran";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
@@ -40,29 +37,35 @@ function DrawerNav({ navigation }) {
       drawerType="back"
     >
       <Drawer.Screen name="Drawer" component={NavigationBottom} />
+      <Drawer.Screen name="Artikel" component={Artikel} />
       <Drawer.Screen name="Akun" component={Akun} />
       <Drawer.Screen name="Setting" component={Setting} />
       <Drawer.Screen name="Home" component={NavigationBottom} />
       <Drawer.Screen name="Topup" component={Topup} />
       <Drawer.Screen name="TarikDana" component={TarikDana} />
+      <Drawer.Screen name="Donasi" component={Donasi} />
+      <Drawer.Screen name="Pembayaran" component={Pembayaran} />
     </Drawer.Navigator>
   );
 }
 
-function convertToRupiah(angka)
-{
-	var rupiah = '';		
-	var angkarev = angka.toString().split('').reverse().join('');
-	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
-	return rupiah.split('',rupiah.length-1).reverse().join('');
+function convertToRupiah(angka) {
+  var rupiah = "";
+  var angkarev = angka.toString().split("").reverse().join("");
+  for (var i = 0; i < angkarev.length; i++)
+    if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + ".";
+  return rupiah
+    .split("", rupiah.length - 1)
+    .reverse()
+    .join("");
 }
 function NaviStack({ navigation }) {
-  let Saldo2 = 0
-  const Data2 = Data
-  Data2.forEach((item)=>{
-    Saldo2 += item.saldo
-  })
-  const rupiah = convertToRupiah(Saldo2)
+  let Saldo2 = 0;
+  const Data2 = Data;
+  Data2.forEach((item) => {
+    Saldo2 += item.saldo;
+  });
+  const rupiah = convertToRupiah(Saldo2);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -80,10 +83,23 @@ function NaviStack({ navigation }) {
           },
           headerLeft: () => (
             <View>
-              <Text style={{ marginLeft: 10, fontSize: 10, color: "#3EA898" }}>
+              <Text
+                style={{
+                  marginLeft: 10,
+                  fontSize: 10,
+                  color: "#3EA898",
+                  // fontFamily: "OpenSans_600SemiBold",
+                }}
+              >
                 <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo anda
               </Text>
-              <Text style={{ marginLeft: 10, color: "blue" }}>
+              <Text
+                style={{
+                  marginLeft: 10,
+                  color: "blue",
+                  // fontFamily: "OpenSans_600SemiBold",
+                }}
+              >
                 {" "}
                 Rp. {rupiah}
               </Text>
@@ -104,11 +120,6 @@ function NaviStack({ navigation }) {
         }}
       />
       <Stack.Screen name="Wallet" component={Wallet} />
-      <Stack.Screen
-        name="Artikel"
-        component={Artikel}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 }
@@ -122,7 +133,6 @@ function NaviStack2({ navigation }) {
           headerStyle: {
             backgroundColor: "#3EA898",
             elevation: 1,
-            
           },
           headerTitleStyle: {
             color: "#e6f2ed",
@@ -143,6 +153,7 @@ function NaviStack2({ navigation }) {
         }}
       />
       <Stack.Screen name="Drawer" component={DrawerNav} />
+
       <Stack.Screen
         name="Home"
         component={Home}
@@ -162,9 +173,9 @@ function NavigationBottom({ style }) {
   return (
     <Bottom.Navigator
       initialRouteName="Home"
-      activeColor="#3EA898"
-      inactiveColor="#009e86"
-      barStyle={{ backgroundColor: "#e6f2ed" }}
+      activeColor="white"
+      inactiveColor="white"
+      barStyle={{ backgroundColor: "#009e86" }}
       tabBarOptions={{
         tabStyle: {
           backgroundColor: "#e6f2ed",
@@ -177,8 +188,26 @@ function NavigationBottom({ style }) {
         },
       }}
     >
-      <Bottom.Screen name="Home" component={NaviStack} />
-      <Bottom.Screen name="Wallet" component={NaviStack2} />
+      <Bottom.Screen
+        name="Home"
+        component={NaviStack}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="home" color={"white"} size={20} />
+          ),
+        }}
+      />
+      <Bottom.Screen
+        name="Wallet"
+        component={NaviStack2}
+        options={{
+          tabBarLabel: "Wallet",
+          tabBarIcon: ({ color, size }) => (
+            <Fontisto name="wallet" color={"white"} size={20} />
+          ),
+        }}
+      />
     </Bottom.Navigator>
   );
 }

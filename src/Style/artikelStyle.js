@@ -6,7 +6,7 @@ export const Styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 25,
-    fontWeight: "bold",
+    fontFamily: "OpenSans_600SemiBold",
     color: "#4A5566",
   },
   progress: {
@@ -24,14 +24,18 @@ export const Styles = StyleSheet.create({
   },
   textBtnDonate: {
     color: "white",
-    fontWeight: "bold",
+    fontFamily: "OpenSans_600SemiBold",
   },
   text1: {
     fontSize: 15,
     color: "green",
-    fontWeight: "bold",
+    fontFamily: "OpenSans_600SemiBold",
   },
-  text2: { fontSize: 15, color: "red", fontWeight: "bold" },
+  text2: {
+    fontSize: 15,
+    color: "red",
+    fontFamily: "OpenSans_600SemiBold",
+  },
   viewOpacity: {
     width: "100%",
     height: 300,
@@ -46,4 +50,13 @@ export const Styles = StyleSheet.create({
     margin: 10,
   },
   viewTextCerita: { backgroundColor: "white", width: "100%", padding: "2%" },
+  iconArrow: {
+    position: "absolute",
+    margin: "10%",
+    marginLeft: "3%",
+  },
+  textNumDonate: {
+    fontSize: 10,
+    fontFamily: "OpenSans_600SemiBold",
+  },
 });

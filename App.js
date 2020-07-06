@@ -6,9 +6,10 @@ import {
   useFonts,
   OpenSans_400Regular_Italic,
   OpenSans_600SemiBold,
-  OpenSans_400Regular
+  OpenSans_400Regular,
 } from "@expo-google-fonts/open-sans";
-import { AppLoading } from "expo";
+import { AppLoading, Font } from "expo";
+import { HomeProvider } from "./src/Context/HomeContext";
 
 export const State = createContext();
 export const Dispatch = createContext();
@@ -16,7 +17,6 @@ export const Dispatch = createContext();
 const initState = {
   uid: false,
 };
-
 const reducer = (action, state) => {
   switch (action.type) {
     case "login":
@@ -35,7 +35,7 @@ const App = () => {
   let fontsLoaded = useFonts({
     OpenSans_400Regular_Italic,
     OpenSans_600SemiBold,
-    OpenSans_400Regular
+    OpenSans_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -44,11 +44,13 @@ const App = () => {
   console.disableYellowBox = true;
   const [state, dispatch] = useReducer(reducer, initState);
   return (
-    <State.Provider value={state}>
-      <Dispatch.Provider value={dispatch}>
-        <Navigation />
-      </Dispatch.Provider>
-    </State.Provider>
+    <HomeProvider>
+      <State.Provider value={state}>
+        <Dispatch.Provider value={dispatch}>
+          <Navigation />
+        </Dispatch.Provider>
+      </State.Provider>
+    </HomeProvider>
   );
 };
 export default App;

@@ -46,18 +46,20 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
   },
   text1: {
-    fontSize: 25,
-    margin: "2%",
-    marginLeft: "2%",
-    color: "black",
-    fontWeight: "bold",
+    fontSize: 20,
+    // fontFamily: "OpenSans_600SemiBold",
+    color: "#4A5566",
+    margin: 10,
   },
   textDonate: {
     fontSize: 10,
+    // fontFamily: "OpenSans_600SemiBold",
+    marginTop: "2%",
   },
   textDonate2: {
     textAlign: "center",
     color: "white",
+    // fontFamily: "OpenSans_600SemiBold",
   },
   btnDonate: {
     backgroundColor: "green",
@@ -67,8 +69,8 @@ export const Styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 12,
-    fontWeight: "bold",
     marginTop: "2%",
     marginBottom: "2%",
+    // fontFamily: "OpenSans_600SemiBold",
   },
 });

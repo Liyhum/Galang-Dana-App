@@ -4,27 +4,29 @@ import { Styles } from "../../../Style/homeStyle";
 import Carousel from "../../Carraousel/Carraousel";
 import { dummyData } from "../../Carraousel/data";
 import * as Progress from "react-native-progress";
-import { Style } from "../../../Style/loginStyle";
 import Data from "./Data.json";
+import { HomeContext } from "../../../Context/HomeContext";
 
 const Home = ({ navigation }) => {
+  const [homeIdContext, setHomeIdContext] = React.useContext(HomeContext);
+  const handleSetIdHome = (res) => {
+    console.log("res id home", homeIdContext);
+    setHomeIdContext(res.id);
+  };
+
   return (
-    <ScrollView
-    showsVerticalScrollIndicator={false}
-    >
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={Styles.viewHome}>
         <View style={Styles.viewTextMP}>
-          <Text style={Styles.text1}>Most Popular</Text>
+          <Text style={Styles.text1}>Most Popular </Text>
         </View>
         <View>
           <Carousel data={dummyData} />
         </View>
-
         <Text style={Styles.text1}>Most Recent</Text>
-
         <View style={Styles.viewCard}>
           {Data.Data.map((res) => (
-            <View style={Styles.viewCard2}>
+            <View key={res.id} style={Styles.viewCard2}>
               <View style={Styles.viewText}>
                 <Image
                   style={{ width: "100%", height: 100 }}
@@ -41,7 +43,9 @@ const Home = ({ navigation }) => {
                 />
                 <Text style={Styles.textDonate}>{res.donasi} </Text>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("Artikel")}
+                  onPress={() => {
+                    navigation.navigate("Artikel"), handleSetIdHome(res);
+                  }}
                   style={Styles.btnDonate}
                 >
                   <Text style={Styles.textDonate2}>Donate</Text>
