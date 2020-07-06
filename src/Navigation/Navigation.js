@@ -10,6 +10,8 @@ import Wallet from "../Components/Screen/Wallet";
 import Akun from "../Components/Screen/Akun";
 import ForgotPassword from "../Components/Screen/ForgotPassword/ForgotPassword";
 import Setting from "../Components/Screen/Settings";
+import Topup from '../Components/Screen/TopUp'
+import TarikDana from '../Components/Screen/TarikDana/TarikDana'
 import { DrawerContent } from "../Components/Screen/ContentDrawer";
 import { FontAwesome, Fontisto, FontAwesome5 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -17,26 +19,23 @@ import { AsyncStorage, View, Text } from "react-native";
 import { State, Dispatch } from "../../App";
 import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
+<<<<<<< HEAD
 import Donasi from "../Components/Screen/Donasi/Donasi";
 import Pembayaran from "../Components/Screen/Pembayaran/Pembayaran";
 
+=======
+import {Data} from '../Assets/tempData'
+>>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
 
 function DrawerNav({ navigation }) {
-  const [progress, setProgress] = React.useState(new Animated.Value(0));
-  const scale = Animated.interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [1, 0],
-  });
-  const screenScale = { transfrom: [{ scale }] };
   return (
     <Drawer.Navigator
       initialRouteName="RightDrawer"
       drawerPosition="right"
       drawerContent={(props) => {
-        setProgress(props.progress);
         return <DrawerContent {...props} />;
       }}
       drawerType="back"
@@ -44,6 +43,7 @@ function DrawerNav({ navigation }) {
       <Drawer.Screen name="Drawer" component={NavigationBottom} />
       <Drawer.Screen name="Akun" component={Akun} />
       <Drawer.Screen name="Setting" component={Setting} />
+<<<<<<< HEAD
       <Drawer.Screen name="Donasi" component={Donasi} />
       <Drawer.Screen
         name="Pembayaran"
@@ -55,18 +55,29 @@ function DrawerNav({ navigation }) {
         component={Artikel}
         options={{ headerShown: false }}
       />
+=======
+      <Drawer.Screen name="Home" component={NavigationBottom} />
+      <Drawer.Screen name="Topup" component={Topup} />
+      <Drawer.Screen name="TarikDana" component={TarikDana} />
+>>>>>>> 3e6256ba70dab1b290e7186b40248034706a9e9f
     </Drawer.Navigator>
   );
 }
-function onDrawer() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Akun" component={Akun} />
-      <Stack.Screen name="Setting" component={Setting} />
-    </Stack.Navigator>
-  );
+
+function convertToRupiah(angka)
+{
+	var rupiah = '';		
+	var angkarev = angka.toString().split('').reverse().join('');
+	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+	return rupiah.split('',rupiah.length-1).reverse().join('');
 }
 function NaviStack({ navigation }) {
+  let Saldo2 = 0
+  const Data2 = Data
+  Data2.forEach((item)=>{
+    Saldo2 += item.saldo
+  })
+  const rupiah = convertToRupiah(Saldo2)
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -102,7 +113,7 @@ function NaviStack({ navigation }) {
                 }}
               >
                 {" "}
-                Rp. 316.000
+                Rp. {rupiah}
               </Text>
             </View>
           ),
@@ -132,11 +143,12 @@ function NaviStack2({ navigation }) {
         component={Wallet}
         options={{
           headerStyle: {
-            backgroundColor: "#e6f2ed",
-            elevation: 0,
+            backgroundColor: "#3EA898",
+            elevation: 1,
+            
           },
           headerTitleStyle: {
-            color: "#3EA898",
+            color: "#e6f2ed",
             alignSelf: "center",
             marginLeft: "14%",
           },
@@ -144,7 +156,7 @@ function NaviStack2({ navigation }) {
             <FontAwesome
               name="gear"
               size={30}
-              color="#3EA898"
+              color="#e6f2ed"
               style={{
                 marginRight: 10,
               }}
