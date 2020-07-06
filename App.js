@@ -8,6 +8,7 @@ import {
   OpenSans_400Regular,
 } from "@expo-google-fonts/open-sans";
 import { AppLoading, Font } from "expo";
+import { HomeProvider } from "./src/Context/HomeContext";
 
 export const State = createContext();
 export const Dispatch = createContext();
@@ -41,11 +42,13 @@ const App = () => {
   console.disableYellowBox = true;
   const [state, dispatch] = useReducer(reducer, initState);
   return (
-    <State.Provider value={state}>
-      <Dispatch.Provider value={dispatch}>
-        <Navigation />
-      </Dispatch.Provider>
-    </State.Provider>
+    <HomeProvider>
+      <State.Provider value={state}>
+        <Dispatch.Provider value={dispatch}>
+          <Navigation />
+        </Dispatch.Provider>
+      </State.Provider>
+    </HomeProvider>
   );
 };
 export default App;
