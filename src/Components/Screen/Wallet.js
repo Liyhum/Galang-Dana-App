@@ -61,36 +61,38 @@ const Wallet = ({ navigation }) => {
   //   }
   //   setRefreshing(false)
   // }
-  // useEffect(() => {
-  //   fetData() 
-  // }, []);
+
   const [data, setData] = useState(Data);
   const saldo = data;
+
+  useEffect(() => {
+    getData();
+  }, [data]);
+
   let jumlah = 0;
   saldo.forEach((item) => (jumlah += item.saldo));
   const handle = () => {
     setRefreshing(true);
-    navigation.navigate('Topup')
+    navigation.navigate("Topup");
   };
-  const getData=()=>{
-    setData(data)
-    setRefreshing(false)
-  }
-  const refresh = (()=>{
-    setRefreshing(false)
-    getData()
-    
-  })
+  const getData = () => {
+    setData(data);
+    setRefreshing(false);
+  };
+  const refresh = () => {
+    setRefreshing(false);
+    getData();
+  };
   const rupiah = convertToRupiah(jumlah);
   return (
-    <View style={styles.viewHome}> 
+    <View style={styles.viewHome}>
       <View style={{ height: "45%", backgroundColor: "#3EA898" }}>
         <View style={{ marginBottom: "10%" }}>
           <View style={styles.viewBalance}>
             <Text style={styles.textSaldo}>Saldo</Text>
             <Text style={styles.textRupiah}>Rp {rupiah}</Text>
           </View>
-          
+
           <View style={[styles.viewSend, { justifyContent: "space-between" }]}>
             <TouchableWithoutFeedback onPress={() => handle()}>
               <View style={styles.Send2}>
