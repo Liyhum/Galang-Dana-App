@@ -11,7 +11,7 @@ const Artikel = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <View style={{ flex: 1, flexDirection: "column" }}>
+      <View style={Styles.viewArtikel}>
         <View>
           {Data[`Data${homeIdContext}`].map((res) => (
             <Image
@@ -61,30 +61,13 @@ const Artikel = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={Styles.viewTextDonate}>
-            <Text
-              style={{
-                marginBottom: "2%",
-                fontSize: 20,
-                fontFamily: "OpenSans_600SemiBold",
-              }}
-            >
-              Cerita
-            </Text>
+            <Text style={Styles.textCerita}>Cerita</Text>
             {Data[`Data${homeIdContext}`].map((res) => (
-              <Text
-                style={{ fontFamily: "OpenSans_400Regular", color: "#4A5566" }}
-              >
-                {res.text}
-              </Text>
+              <Text style={Styles.text3}>{res.text}</Text>
             ))}
             {Data[`Data${homeIdContext}`].map((res) => (
               <Image
-                style={{
-                  width: "100%",
-                  height: 200,
-                  marginTop: "2%",
-                  marginBottom: "2%",
-                }}
+                style={Styles.img2}
                 source={{
                   uri: res.img2,
                 }}
@@ -92,35 +75,13 @@ const Artikel = ({ navigation }) => {
               />
             ))}
             {Data[`Data${homeIdContext}`].map((res) => (
-              <Text
-                style={{ fontFamily: "OpenSans_400Regular", color: "#4A5566" }}
-              >
-                {res.text2}
-              </Text>
+              <Text style={Styles.text3}>{res.text2}</Text>
             ))}
           </View>
           <View style={Styles.viewTextDonate}>
-            <Text
-              style={{
-                fontFamily: "OpenSans_600SemiBold",
-                marginBottom: "2%",
-                fontSize: 20,
-              }}
-            >
-              Donasi (0)
-            </Text>
+            <Text style={Styles.textDonasi}>Donasi (0)</Text>
 
-            <Text
-              style={{
-                textAlign: "center",
-                margin: 30,
-                color: "#4A5566",
-                fontFamily: "OpenSans_600SemiBold",
-              }}
-            >
-              {" "}
-              Tidak ada yang donasi
-            </Text>
+            <Text style={Styles.textNoDonasi}> Tidak ada yang donasi</Text>
           </View>
         </View>
       </View>

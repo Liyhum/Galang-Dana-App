@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  Font,
-  AdMobBanner,
-  setTestDeviceIDAsync,
-  AdMobInterstitial,
-} from "expo-ads-admob";
+// import {
+//   Font,
+//   AdMobBanner,
+//   setTestDeviceIDAsync,
+//   AdMobInterstitial,
+// } from "expo-ads-admob";
 import {
   View,
   Text,
@@ -16,7 +16,11 @@ import {
   RefreshControl,
 } from "react-native";
 import styles from "../../Style/walletStyle";
+import { LinearGradient } from "expo-linear-gradient";
 import { Data } from "../../Assets/tempData";
+import { Modal } from "react-native-paper";
+import Topup from "../../Components/Screen/TopUp";
+import axios from "axios";
 function convertToRupiah(angka) {
   var rupiah = "";
   var angkarev = angka.toString().split("").reverse().join("");
@@ -63,12 +67,11 @@ const Wallet = ({ navigation }) => {
   };
   useEffect(() => {
     console.log(data2, "halo");
-    if(refresh === true ){
-      fetchData().then(()=>{
-        setRefreshing(false)
-      })
+    if (refresh === true) {
+      fetchData().then(() => {
+        setRefreshing(false);
+      });
     }
-    fetchData();
     // AsyncStorage.removeItem('users')
     // console.log(jumlah,'ASsfaf')
   }, []);
@@ -117,10 +120,7 @@ const Wallet = ({ navigation }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl 
-          onRefresh={refresh} 
-          refreshing={refreshing} 
-          />
+          <RefreshControl onRefresh={refresh} refreshing={refreshing} />
         }
       />
     </View>
