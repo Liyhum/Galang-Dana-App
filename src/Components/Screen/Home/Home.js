@@ -21,11 +21,7 @@ const Home = ({ navigation }) => {
           <Text style={Styles.text1}>Most Popular </Text>
         </View>
         <View>
-          <Carousel
-            data={dummyData}
-            route={navigation.navigate("Artikel")}
-            navigations={navigation.navigate("Artikel")}
-          />
+          <Carousel data={dummyData} Navigation={navigation} />
         </View>
         <Text style={Styles.text1}>Most Recent</Text>
         <View style={Styles.viewCard}>

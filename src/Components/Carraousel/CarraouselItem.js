@@ -4,7 +4,7 @@ import { Styles } from "../../Style/caraouselItemStyle";
 import * as Progress from "react-native-progress";
 import { HomeContext } from "../../Context/HomeContext";
 
-const CaraouselItem = ({ item, routeNav }) => {
+const CaraouselItem = ({ item, Navigation }) => {
   const [homeIdContext, setHomeIdContext] = React.useContext(HomeContext);
 
   const handleSetIdHome = (item) => {
@@ -14,7 +14,7 @@ const CaraouselItem = ({ item, routeNav }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        routeNav, handleSetIdHome(item);
+        Navigation.navigate("Artikel"), handleSetIdHome(item);
       }}
     >
       <View style={Styles.cardView}>
