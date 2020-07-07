@@ -16,11 +16,7 @@ import {
   RefreshControl,
 } from "react-native";
 import styles from "../../Style/walletStyle";
-import { LinearGradient } from "expo-linear-gradient";
 import { Data } from "../../Assets/tempData";
-import { Modal } from "react-native-paper";
-import Topup from "../../Components/Screen/TopUp";
-import axios from "axios";
 function convertToRupiah(angka) {
   var rupiah = "";
   var angkarev = angka.toString().split("").reverse().join("");
@@ -72,6 +68,7 @@ const Wallet = ({ navigation }) => {
         setRefreshing(false)
       })
     }
+    fetchData();
     // AsyncStorage.removeItem('users')
     // console.log(jumlah,'ASsfaf')
   }, []);
