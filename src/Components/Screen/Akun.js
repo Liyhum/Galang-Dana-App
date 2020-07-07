@@ -5,8 +5,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  KeyboardAvoidingView,
-  TextInput,
+  TextInput, 
 } from "react-native";
 import styles from "../../Style/akunStyle";
 import {

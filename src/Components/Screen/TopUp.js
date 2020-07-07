@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import styles from "../../Style/topupStyle";
 import {
-  FontAwesome,
+  FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -34,9 +34,19 @@ function convertToRupiah(angka) {
     .join("");
 }
 const Topup = ({ navigation }) => {
+  const fetData = async () => {
+    const value = JSON.parse(await AsyncStorage.getItem("users"));
+    if (value != null) {
+      setHay(value);
+    }
+  };
   React.useEffect(() => {
-    console.log(saldo, "=+++==+Data");
-  });
+    fetData();
+    // console.log(hay,"+=++=+=+=+")
+    // AsyncStorage.removeItem('users')
+    console.log(hay, "=+++==+Data");
+  }, []);
+  const [hay, setHay] = useState([]);
   const [data, setData] = useState(Saldo);
   const [saldo, setSaldo] = useState(Data);
   const [value, setValue] = useState(0);
@@ -48,27 +58,26 @@ const Topup = ({ navigation }) => {
   };
   const handleSubmitDana = () => {
     const all = JSON.stringify(saldo);
-    setTimeout(() => {
-      setRefresh(true);
-    }, 500);
     console.log(all);
     if (value <= 1) {
       alert("Masukan Jumlah saldo");
     } else {
-      saldo.push({
+      hay.push({
         id: new Date(),
         name: "Wallet Transfer",
         saldo: value,
       });
+      AsyncStorage.setItem("users", JSON.stringify(hay));
+      setTimeout(() => {
+        setRefresh(true);
+      }, 10);
+      setTimeout(() => {
+        setRefresh(false);
+        navigation.navigate("Home");
+        setValue(0);
+      }, 3000);
     }
-    setTimeout(() => {
-      setRefresh(false);
-    }, 3000);
-    setValue(0);
   };
-  React.useEffect(() => {
-    console.log(saldo, "Asfasfsaf");
-  });
   const renderItems = (item) => {
     const item2 = item.value;
     const jumlah = convertToRupiah(item2);
@@ -92,16 +101,27 @@ const Topup = ({ navigation }) => {
           }}
         />
         <View style={styles.header}>
-          <FontAwesome
-            name="arrow-left"
-            size={25}
-            color="#e6f2ed"
+          <View
             style={{
-              marginLeft: "5%",
-              // marginTop:'5%'
+              height: "70%",
+              width: "10%",
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: "2%",
             }}
-            onPress={() => navigation.navigate("Home")}
-          />
+          >
+            <FontAwesome5
+              name="arrow-left"
+              size={25}
+              color="#e6f2ed"
+              style={
+                {
+                  // marginTop:'5%'
+                }
+              }
+              onPress={() => navigation.navigate("Choose")}
+            />
+          </View>
           <Text style={styles.textTopup}>Top up</Text>
           <MaterialCommunityIcons
             name="menu"
@@ -130,7 +150,7 @@ const Topup = ({ navigation }) => {
             disabled={value === 0 ? true : false}
             onPress={() => setValue(value - 500)}
           >
-            <FontAwesome
+            <FontAwesome5
               name="minus"
               size={20}
               color="#3EA898"
@@ -150,7 +170,7 @@ const Topup = ({ navigation }) => {
             </Text>
           </View>
 
-          <FontAwesome
+          <FontAwesome5
             name="plus"
             size={20}
             color="#3EA898"
@@ -187,7 +207,7 @@ const Topup = ({ navigation }) => {
               <View
                 style={{
                   height: "100%",
-                  width: "100%",
+                  width: 300,
                   justifyContent: "center",
                   alignItems: "center",
                 }}

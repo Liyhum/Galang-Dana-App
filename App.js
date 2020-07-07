@@ -25,7 +25,10 @@ const reducer = (action, state) => {
         uid: true,
       };
     case "logout":
-      return { ...state, uid: false };
+      return { 
+        ...state, 
+        uid: false 
+      };
     default:
       return state;
   }

@@ -15,18 +15,35 @@ import TarikDana from "../Components/Screen/TarikDana/TarikDana";
 import { DrawerContent } from "../Components/Screen/ContentDrawer";
 import { FontAwesome, Fontisto, FontAwesome5 } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { AsyncStorage, View, Text } from "react-native";
+import { AsyncStorage, View, Text, ActivityIndicator } from "react-native";
 import { State, Dispatch } from "../../App";
-import Animated from "react-native-reanimated";
 import Artikel from "../Components/Screen/Artikel/Artikel";
 import Donasi from "../Components/Screen/Donasi/Donasi";
+import Choose from "../Components/Screen/ChooseTop";
 import { Data } from "../Assets/tempData";
 import Pembayaran from "../Components/Screen/Pembayaran/Pembayaran";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Bottom = createMaterialBottomTabNavigator();
+import {
+  useFonts,
+  OpenSans_400Regular_Italic,
+  OpenSans_600SemiBold,
+  OpenSans_400Regular,
+} from "@expo-google-fonts/open-sans";
+import { AppLoading, Font } from "expo";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 function DrawerNav({ navigation }) {
+  let fontsLoaded = useFonts({
+    OpenSans_400Regular_Italic,
+    OpenSans_600SemiBold,
+    OpenSans_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <Drawer.Navigator
       initialRouteName="RightDrawer"
@@ -45,6 +62,7 @@ function DrawerNav({ navigation }) {
       <Drawer.Screen name="TarikDana" component={TarikDana} />
       <Drawer.Screen name="Donasi" component={Donasi} />
       <Drawer.Screen name="Pembayaran" component={Pembayaran} />
+      <Drawer.Screen name="Choose" component={Choose} />
     </Drawer.Navigator>
   );
 }
@@ -60,9 +78,30 @@ function convertToRupiah(angka) {
     .join("");
 }
 function NaviStack({ navigation }) {
+  const [hay, setHay] = React.useState([]);
+  const [refresh, setRefreshing] = React.useState(false);
+  const refreshing = () => {
+    setRefreshing(true);
+    fetData().then(() => {
+      setRefreshing(false);
+    });
+  };
+  const fetData = async () => {
+    const value = JSON.parse(await AsyncStorage.getItem("users"));
+    if (value != null) {
+      setHay(value);
+    }
+    setRefreshing(false);
+  };
+  React.useEffect(() => {
+    if (refresh === true) {
+      fetData().then(() => {
+        setRefreshing(false);
+      });
+    }
+  }, []);
   let Saldo2 = 0;
-  const Data2 = Data;
-  Data2.forEach((item) => {
+  hay.forEach((item) => {
     Saldo2 += item.saldo;
   });
   const rupiah = convertToRupiah(Saldo2);
@@ -82,27 +121,40 @@ function NaviStack({ navigation }) {
             marginLeft: "14%",
           },
           headerLeft: () => (
-            <View>
-              <Text
-                style={{
-                  marginLeft: 10,
-                  fontSize: 10,
-                  color: "#3EA898",
-                  // fontFamily: "OpenSans_600SemiBold",
-                }}
-              >
-                <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo anda
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 10,
-                  color: "blue",
-                  // fontFamily: "OpenSans_600SemiBold",
-                }}
-              >
-                {" "}
-                Rp. {rupiah}
-              </Text>
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              {refresh ? (
+                <ActivityIndicator />
+              ) : (
+                <View>
+                  <TouchableWithoutFeedback onPress={() => refreshing()}>
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        fontSize: 10,
+                        color: "#3EA898",
+                        // fontFamily: "OpenSans_600SemiBold",
+                      }}
+                    >
+                      <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo
+                      anda
+                    </Text>
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: "blue",
+                        // fontFamily: "OpenSans_600SemiBold",
+                      }}
+                    >
+                      {" "}
+                      Rp. {rupiah}
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              )}
             </View>
           ),
           headerTitle: null,
@@ -175,7 +227,7 @@ function NavigationBottom({ style }) {
       initialRouteName="Home"
       activeColor="white"
       inactiveColor="white"
-      barStyle={{ backgroundColor: "#009e86" }}
+      barStyle={{ backgroundColor: "#3EA898" }}
       tabBarOptions={{
         tabStyle: {
           backgroundColor: "#e6f2ed",
