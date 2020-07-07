@@ -7,18 +7,15 @@ import * as Progress from "react-native-progress";
 import Data from "./Data.json";
 import { HomeContext } from "../../../Context/HomeContext";
 
-
 const Home = ({ navigation }) => {
   const [homeIdContext, setHomeIdContext] = React.useContext(HomeContext);
   const handleSetIdHome = (res) => {
     console.log("res id home", homeIdContext);
     setHomeIdContext(res.id);
   };
-  
+
   return (
-    <ScrollView 
-    showsVerticalScrollIndicator={false}
-    >
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={Styles.viewHome}>
         <View style={Styles.viewTextMP}>
           <Text style={Styles.text1}>Most Popular </Text>
@@ -27,7 +24,7 @@ const Home = ({ navigation }) => {
           <Carousel
             data={dummyData}
             route={navigation.navigate("Artikel")}
-            // navigations={navigation.navigate("Artikel")}
+            navigations={navigation.navigate("Artikel")}
           />
         </View>
         <Text style={Styles.text1}>Most Recent</Text>

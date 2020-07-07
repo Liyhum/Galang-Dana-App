@@ -67,17 +67,10 @@ const Wallet = ({ navigation }) => {
   };
   useEffect(() => {
     console.log(data2, "halo");
-<<<<<<< HEAD
-    if (refresh === true) {
-      fetchData().then(() => {
-        setRefreshing(false);
-      });
-=======
     if(refresh === true ){
       fetchData().then(()=>{
         setRefreshing(false)
       })
->>>>>>> 29be3f1f107b37b1b9096a2083bc723359779d9f
     }
     // AsyncStorage.removeItem('users')
     // console.log(jumlah,'ASsfaf')
@@ -127,14 +120,10 @@ const Wallet = ({ navigation }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         refreshControl={
-<<<<<<< HEAD
-          <RefreshControl onRefresh={refresh} refreshing={refreshing} />
-=======
           <RefreshControl 
           onRefresh={refresh} 
           refreshing={refreshing} 
           />
->>>>>>> 29be3f1f107b37b1b9096a2083bc723359779d9f
         }
       />
     </View>
