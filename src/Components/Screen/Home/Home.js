@@ -14,7 +14,9 @@ const Home = ({ navigation }) => {
     console.log("res id home", homeIdContext);
     setHomeIdContext(res.id);
   };
-  
+  const handle = ()=>{
+    navigation.navigate("Artikel")
+  }
   return (
     <ScrollView 
     showsVerticalScrollIndicator={false}
@@ -24,7 +26,8 @@ const Home = ({ navigation }) => {
           <Text style={Styles.text1}>Most Popular </Text>
         </View>
         <View>
-          <Carousel data={dummyData} />
+          <Carousel data={dummyData} 
+          route={()=>handle() }/>
         </View>
         <Text style={Styles.text1}>Most Recent</Text>
         <View style={Styles.viewCard}>

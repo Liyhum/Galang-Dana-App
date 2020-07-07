@@ -99,6 +99,7 @@ function NaviStack({ navigation }) {
         setRefreshing(false);
       });
     }
+    fetData();
   }, []);
   let Saldo2 = 0;
   hay.forEach((item) => {
@@ -142,16 +143,27 @@ function NaviStack({ navigation }) {
                       <Fontisto name="wallet" size={10} color="#3EA898" /> Saldo
                       anda
                     </Text>
-                    <Text
-                      style={{
-                        marginLeft: 10,
-                        color: "blue",
-                        // fontFamily: "OpenSans_600SemiBold",
-                      }}
-                    >
-                      {" "}
-                      Rp. {rupiah}
-                    </Text>
+                    {Saldo2 < 0 ? (
+                      <Text
+                        style={{
+                          marginLeft: 10,
+                          color: "blue",
+                          // fontFamily: "OpenSans_600SemiBold",
+                        }}
+                      >
+                        Rp. 0
+                      </Text>
+                    ) : (
+                      <Text
+                        style={{
+                          marginLeft: 10,
+                          color: "blue",
+                          // fontFamily: "OpenSans_600SemiBold",
+                        }}
+                      >
+                        Rp. {rupiah}
+                      </Text>
+                    )}
                   </TouchableWithoutFeedback>
                 </View>
               )}

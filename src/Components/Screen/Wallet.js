@@ -63,10 +63,10 @@ const Wallet = ({ navigation }) => {
   };
   useEffect(() => {
     console.log(data2, "halo");
-    if(refresh === true ){
-      fetchData().then(()=>{
-        setRefreshing(false)
-      })
+    if (refresh === true) {
+      fetchData().then(() => {
+        setRefreshing(false);
+      });
     }
     fetchData();
     // AsyncStorage.removeItem('users')
@@ -92,7 +92,11 @@ const Wallet = ({ navigation }) => {
         <View style={{ marginBottom: "10%" }}>
           <View style={styles.viewBalance}>
             <Text style={styles.textSaldo}>Saldo</Text>
-            <Text style={styles.textRupiah}>Rp {rupiah}</Text>
+            {jumlah < 0 ? (
+              <Text style={styles.textRupiah}>Rp. 0</Text>
+            ) : (
+              <Text style={styles.textRupiah}>Rp. {rupiah}</Text>
+            )}
           </View>
 
           <View style={[styles.viewSend, { justifyContent: "space-between" }]}>
@@ -117,13 +121,11 @@ const Wallet = ({ navigation }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl 
-          onRefresh={refresh} 
-          refreshing={refreshing} 
-          />
+          <RefreshControl onRefresh={refresh} refreshing={refreshing} />
         }
       />
     </View>
   );
 };
 export default Wallet;
+
