@@ -10,7 +10,6 @@ import {
 import CarouselItem from "./CarraouselItem";
 
 const { width, heigth } = Dimensions.get("window");
-let flatList;
 
 function infiniteScroll(dataList) {
   const numberOfData = dataList.length;
@@ -24,12 +23,10 @@ function infiniteScroll(dataList) {
       scrollValue = 0;
       scrolled = 0;
     }
-
-    this.flatList.scrollToOffset({ animated: true, offset: scrollValue });
-  }, 5000);
+  });
 }
 
-const Carousel = ({ data }) => {
+const Carousel = ({ data, route }) => {
   const scrollX = new Animated.Value(0);
   let position = Animated.divide(scrollX, width);
   const [dataList, setDataList] = useState(data);
@@ -44,9 +41,6 @@ const Carousel = ({ data }) => {
       <View>
         <FlatList
           data={data}
-          ref={(flatList) => {
-            this.flatList = flatList;
-          }}
           keyExtractor={(item, index) => "key" + index}
           horizontal
           pagingEnabled
@@ -56,7 +50,7 @@ const Carousel = ({ data }) => {
           decelerationRate={"fast"}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
-            return <CarouselItem item={item} />;
+            return <CarouselItem item={item} routeNav={route} />;
           }}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { x: scrollX } } },
