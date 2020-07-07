@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  Font,
-  AdMobBanner,
-  setTestDeviceIDAsync,
-  AdMobInterstitial,
-} from "expo-ads-admob";
+// import {
+//   Font,
+//   AdMobBanner,
+//   setTestDeviceIDAsync,
+//   AdMobInterstitial,
+// } from "expo-ads-admob";
 import {
   View,
   Text,
@@ -67,10 +67,10 @@ const Wallet = ({ navigation }) => {
   };
   useEffect(() => {
     console.log(data2, "halo");
-    if(refresh === true ){
-      fetchData().then(()=>{
-        setRefreshing(false)
-      })
+    if (refresh === true) {
+      fetchData().then(() => {
+        setRefreshing(false);
+      });
     }
     // AsyncStorage.removeItem('users')
     // console.log(jumlah,'ASsfaf')
@@ -120,10 +120,7 @@ const Wallet = ({ navigation }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl 
-          onRefresh={refresh} 
-          refreshing={refreshing} 
-          />
+          <RefreshControl onRefresh={refresh} refreshing={refreshing} />
         }
       />
     </View>
