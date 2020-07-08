@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export const Styles = StyleSheet.create({
+  viewArtikel: {
+    flex: 1,
+    flexDirection: "column",
+  },
   viewTextTitle: {
     margin: 10,
   },
@@ -36,6 +40,10 @@ export const Styles = StyleSheet.create({
     color: "red",
     fontFamily: "OpenSans_600SemiBold",
   },
+  text3: {
+    fontFamily: "OpenSans_400Regular",
+    color: "#4A5566",
+  },
   viewOpacity: {
     width: "100%",
     height: 300,
@@ -48,6 +56,7 @@ export const Styles = StyleSheet.create({
     width: "95%",
     padding: "2%",
     margin: 10,
+    
   },
   viewTextCerita: { backgroundColor: "white", width: "100%", padding: "2%" },
   iconArrow: {
@@ -57,6 +66,28 @@ export const Styles = StyleSheet.create({
   },
   textNumDonate: {
     fontSize: 10,
+    fontFamily: "OpenSans_600SemiBold",
+  },
+  textCerita: {
+    marginBottom: "2%",
+    fontSize: 20,
+    fontFamily: "OpenSans_600SemiBold",
+  },
+  img2: {
+    width: "100%",
+    height: 200,
+    marginTop: "2%",
+    marginBottom: "2%",
+  },
+  textDonasi: {
+    fontFamily: "OpenSans_600SemiBold",
+    marginBottom: "2%",
+    fontSize: 20,
+  },
+  textNoDonasi: {
+    textAlign: "center",
+    margin: 30,
+    color: "#4A5566",
     fontFamily: "OpenSans_600SemiBold",
   },
 });
