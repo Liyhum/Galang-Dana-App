@@ -1,16 +1,84 @@
-import React from "react";
-import { View, Image, Text, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  AsyncStorage,
+  RefreshControl,
+} from "react-native";
 import { Styles } from "../../../Style/artikelStyle";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Progress from "react-native-progress";
 import { HomeContext } from "../../../Context/HomeContext";
 import Data from "./Data.json";
-
+import { FlatList } from "react-native-gesture-handler";
+function convertToRupiah(angka) {
+  var rupiah = "";
+  var angkarev = angka.toString().split("").reverse().join("");
+  for (var i = 0; i < angkarev.length; i++)
+    if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + ".";
+  return rupiah
+    .split("", rupiah.length - 1)
+    .reverse()
+    .join("");
+}
 const Artikel = ({ navigation }) => {
   const [homeIdContext, setHomeIdContext] = React.useContext(HomeContext);
+  const [se, setSe] = useState("");
+  const [val, setValue] = useState("");
+  const [refreshing, setRefreshing] = useState(false);
+  const value = Data[`Data${homeIdContext}`].map((res) => res.donasi);
 
+  const data = Data[`Data${homeIdContext}`];
+  let fetchData = async () => {
+    const data = await AsyncStorage.getItem("uid");
+    if (data != null) {
+      setSe(data);
+    }
+  };
+  if (!data) data = Data[`Data${homeIdContext}`];
+  React.useEffect(() => {
+    ok.map((res) => {
+      const angka2 = res.donasi;
+      const all = [...angka2];
+      all.forEach((v) => {
+        angka += v.jumlah;
+      });
+      console.log(angka);
+      setValue(angka);
+    });
+
+    fetchData();
+  }, []);
+  // const renderItems = (item) => {
+  //   const name = item.donasi.map((res)=>res.name)
+  //   const jumlah = item.donasi.map((res)=>res.jumlah)
+  //   return (
+  //     <View style={{
+  //     }}>
+  //       <Text>{name}</Text>
+  //       <Text>{jumlah}</Text>
+  //     </View>
+  //   )
+  // };
+  const refresh = () => {
+    setRefreshing(true);
+    fetchData().then(() => {
+      setRefreshing(false);
+    });
+  };
+  const ok = [...data];
+  const itung = ok.forEach((item) => (angka += item.donasi.jumlah));
+  let angka = 0;
+  const rupaih = convertToRupiah(val);
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl onRefresh={refresh} refreshing={refreshing} />
+      }
+    >
       <View style={Styles.viewArtikel}>
         <View>
           {Data[`Data${homeIdContext}`].map((res) => (
@@ -33,13 +101,16 @@ const Artikel = ({ navigation }) => {
         </View>
         <View>
           <View style={Styles.viewTextDonate}>
-            {Data[`Data${homeIdContext}`].map((res) => (
+            {data.map((res) => (
               <Text style={Styles.textTitle}>{res.title}</Text>
             ))}
 
             <Text style={Styles.textNumDonate}>
-              <Text style={Styles.text1}> Rp.0</Text> from
-              {Data[`Data${homeIdContext}`].map((res) => (
+              {data.map((res) => (
+                <Text style={Styles.text2}> {res.dana2}</Text>
+              ))}
+              from
+              {data.map((res) => (
                 <Text style={Styles.text2}> {res.dana}</Text>
               ))}
             </Text>
@@ -62,10 +133,10 @@ const Artikel = ({ navigation }) => {
           </View>
           <View style={Styles.viewTextDonate}>
             <Text style={Styles.textCerita}>Cerita</Text>
-            {Data[`Data${homeIdContext}`].map((res) => (
+            {data.map((res) => (
               <Text style={Styles.text3}>{res.text}</Text>
             ))}
-            {Data[`Data${homeIdContext}`].map((res) => (
+            {data.map((res) => (
               <Image
                 style={Styles.img2}
                 source={{
@@ -74,14 +145,14 @@ const Artikel = ({ navigation }) => {
                 resizeMode={"cover"}
               />
             ))}
-            {Data[`Data${homeIdContext}`].map((res) => (
+            {data.map((res) => (
               <Text style={Styles.text3}>{res.text2}</Text>
             ))}
           </View>
           <View style={Styles.viewTextDonate}>
-            <Text style={Styles.textDonasi}>Donasi (0)</Text>
-
-            <Text style={Styles.textNoDonasi}> Tidak ada yang donasi</Text>
+            {value.map((res) => (
+              <Text style={Styles.textDonasi}>Donasi {res.length}</Text>
+            ))}
           </View>
         </View>
       </View>

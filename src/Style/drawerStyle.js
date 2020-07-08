@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     viewNama:{
         justifyContent: 'center',
-        marginRight:'5%'
+        marginRight:'35%'
     },
     viewUser:{
         height:'15%',

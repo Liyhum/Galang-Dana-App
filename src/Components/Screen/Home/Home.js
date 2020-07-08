@@ -13,7 +13,6 @@ const Home = ({ navigation }) => {
     console.log("res id home", homeIdContext);
     setHomeIdContext(res.id);
   };
-
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={Styles.viewHome}>

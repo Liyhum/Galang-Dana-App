@@ -56,6 +56,7 @@ export const Styles = StyleSheet.create({
     width: "95%",
     padding: "2%",
     margin: 10,
+    
   },
   viewTextCerita: { backgroundColor: "white", width: "100%", padding: "2%" },
   iconArrow: {

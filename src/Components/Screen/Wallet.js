@@ -72,6 +72,7 @@ const Wallet = ({ navigation }) => {
         setRefreshing(false);
       });
     }
+    fetchData()
     // AsyncStorage.removeItem('users')
     // console.log(jumlah,'ASsfaf')
   }, []);
@@ -95,7 +96,11 @@ const Wallet = ({ navigation }) => {
         <View style={{ marginBottom: "10%" }}>
           <View style={styles.viewBalance}>
             <Text style={styles.textSaldo}>Saldo</Text>
-            <Text style={styles.textRupiah}>Rp {rupiah}</Text>
+            {jumlah < 0 ? (
+              <Text style={styles.textRupiah}>Rp. 0</Text>
+            ) : (
+              <Text style={styles.textRupiah}>Rp. {rupiah}</Text>
+            )}
           </View>
 
           <View style={[styles.viewSend, { justifyContent: "space-between" }]}>
@@ -127,3 +132,4 @@ const Wallet = ({ navigation }) => {
   );
 };
 export default Wallet;
+

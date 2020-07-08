@@ -27,7 +27,7 @@ export const DrawerContent = ({ navigation, props }) => {
             <FontAwesome name="user" color={"#e6f2ed"} size={60} />
           </View>
           <View style={styles.viewNama}>
-            <Text style={styles.nama}>Muhammad Muhyillail</Text>
+            <Text style={styles.nama}>Dimas A P</Text>
           </View>
         </View>
         <View style={styles.viewText}>
@@ -86,7 +86,7 @@ export const DrawerContent = ({ navigation, props }) => {
             fontFamily: "OpenSans_400Regular_Italic",
           }}
         >
-          Copyright Samid
+          Copyright Dimas
         </Text>
       </View>
     </View>
