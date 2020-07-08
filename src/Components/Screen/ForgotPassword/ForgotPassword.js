@@ -14,14 +14,17 @@ import { Fumi } from "react-native-textinput-effects";
 import firebase from "../../../Config/Firebase/firebaseconfig";
 
 const ForgotPassword = ({ navigation }) => {
+  const [email, setEmail] = React.useState("");
+
   const handleSubmit = () => {
     firebase
       .auth()
-      .sendPasswordResetEmail("saya@gmail.com")
+      .sendPasswordResetEmail(email)
       .then((res) => {
         console.log("res", res);
         alert("success", res);
-      });
+      })
+      .catch((err) => console.log("err", err), alert("failed", err));
   };
   return (
     <View>
@@ -55,6 +58,8 @@ const ForgotPassword = ({ navigation }) => {
             iconSize={20}
             iconWidth={40}
             inputPadding={16}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <TouchableOpacity onPress={() => handleSubmit()} style={Style.btn}>
             <Text style={Style.textLogin}>Send Email</Text>
