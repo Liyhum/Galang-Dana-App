@@ -70,4 +70,9 @@ export const Style = StyleSheet.create({
     position: "absolute",
   },
   textFPass: { fontSize: 10, color: "red" },
+  iconEye: {
+    marginLeft: "90%",
+    position: "absolute",
+    marginTop: "28%",
+  },
 });
