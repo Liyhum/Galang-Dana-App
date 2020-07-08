@@ -17,11 +17,18 @@ import Mail from "react-native-vector-icons/MaterialIcons";
 import { Style } from "../../../Style/loginStyle";
 import firebase from "../../../Config/Firebase/firebaseconfig";
 import { State, Dispatch } from "../../../../App";
+import { Entypo } from "@expo/vector-icons";
 
 const Login = ({ navigation }) => {
   const state = useContext(State);
   const dispatch = useContext(Dispatch);
   const [loading, setLoading] = React.useState(false);
+  const [showEye, setShowEye] = React.useState(false);
+
+  const handleShowEye = () => {
+    setShowEye(!showEye);
+  };
+
   return (
     <ScrollView>
       <Formik
@@ -98,8 +105,26 @@ const Login = ({ navigation }) => {
                   value={values.password}
                   onChangeText={handleChange("password")}
                   onBlur={() => setFieldTouched("password")}
-                  secureTextEntry={true}
+                  secureTextEntry={showEye ? false : true}
                 />
+                {showEye ? (
+                  <Entypo
+                    onPress={() => handleShowEye()}
+                    style={Style.iconEye}
+                    name="eye"
+                    size={25}
+                    color="#C6C9CD"
+                  />
+                ) : (
+                  <Entypo
+                    onPress={() => handleShowEye()}
+                    style={Style.iconEye}
+                    name="eye-with-line"
+                    size={25}
+                    color="#C6C9CD"
+                  />
+                )}
+
                 {touched.password && errors.password && (
                   <Text style={Style.textFPass}>{errors.password}</Text>
                 )}
