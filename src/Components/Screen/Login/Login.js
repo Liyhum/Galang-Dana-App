@@ -107,24 +107,13 @@ const Login = ({ navigation }) => {
                   onBlur={() => setFieldTouched("password")}
                   secureTextEntry={showEye ? false : true}
                 />
-                {showEye ? (
-                  <Entypo
-                    onPress={() => handleShowEye()}
-                    style={Style.iconEye}
-                    name="eye"
-                    size={25}
-                    color="#C6C9CD"
-                  />
-                ) : (
-                  <Entypo
-                    onPress={() => handleShowEye()}
-                    style={Style.iconEye}
-                    name="eye-with-line"
-                    size={25}
-                    color="#C6C9CD"
-                  />
-                )}
-
+                <Entypo
+                  onPress={() => handleShowEye()}
+                  style={Style.iconEye}
+                  name={showEye ? "eye" : "eye-with-line"}
+                  size={25}
+                  color="#C6C9CD"
+                />
                 {touched.password && errors.password && (
                   <Text style={Style.textFPass}>{errors.password}</Text>
                 )}
