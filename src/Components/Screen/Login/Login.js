@@ -24,11 +24,14 @@ const Login = ({ navigation }) => {
   const dispatch = useContext(Dispatch);
   const [loading, setLoading] = React.useState(false);
   const [showEye, setShowEye] = React.useState(false);
+  const [login, setLogin] = React.useState(false);
 
   const handleShowEye = () => {
     setShowEye(!showEye);
   };
-
+  React.useEffect(()=>{
+      
+  },[])
   return (
     <ScrollView>
       <Formik
@@ -41,9 +44,9 @@ const Login = ({ navigation }) => {
               .then((res) => {
                 AsyncStorage.setItem("uid", res.user.uid);
                 setLoading(false);
+                dispatch({ type: "login" });
                 resetForm();
                 console.log("Sukses", res);
-                dispatch({ type: "login" });
               })
               .catch((err) => {
                 Alert.alert("failed");

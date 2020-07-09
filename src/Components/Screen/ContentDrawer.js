@@ -11,11 +11,17 @@ import { State, Dispatch } from "../../../App";
 
 export const DrawerContent = ({ navigation, props }) => {
   const dipatch = React.useContext(Dispatch);
+  const [login, setLogin] = React.useState(false);
+
   const HandleLogout = () => {
-    dipatch({ type: "logout" });
+    
     AsyncStorage.removeItem("uid");
     navigation.closeDrawer();
   };
+  React.useEffect(()=>{
+    if(login === true){
+    }
+  },[])
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
       <View style={styles.viewDrawer}>
@@ -67,7 +73,7 @@ export const DrawerContent = ({ navigation, props }) => {
             )}
             label="Logout"
             labelStyle={styles.TextLogout}
-            onPress={() => HandleLogout()}
+            onPress={() => HandleLogout(dipatch({ type: "logout" }))}
           />
         </View>
       </View>
