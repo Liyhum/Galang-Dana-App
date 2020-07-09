@@ -1,21 +1,51 @@
 import React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity,AsyncStorage } from "react-native";
 import Data from "./Data.json";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Styles } from "../../../Style/donasiStyle";
-
+function convertToRupiah(angka) {
+  var rupiah = "";
+  var angkarev = angka.toString().split("").reverse().join("");
+  for (var i = 0; i < angkarev.length; i++)
+    if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + ".";
+  return rupiah
+    .split("", rupiah.length - 1)
+    .reverse()
+    .join("");
+}
 const Donasi = ({ navigation }) => {
   const [list, setList] = React.useState(false);
+  const [data2, setData2] = React.useState([]);
   const [id, setId] = React.useState("");
-
+  const [refresh,setRefresh] = React.useState(false)
+  let fetchData = async () => {
+    const value = JSON.parse(await AsyncStorage.getItem("users"));
+    if (value != null) {
+      setData2(value);
+      setRefresh(false);
+    }
+  }
   const handleList = (res) => {
     if (res.id) {
       setList(!list);
       setId(res.id);
       console.log("list", list);
+      setRefresh(true);
     }
   };
-
+  React.useEffect(()=>{
+    refreshs()
+    fetchData()
+  },[])
+  const refreshs =()=>{
+    fetchData().then(()=>{
+      setRefresh(false)
+    })
+  }
+  const all = [...data2];
+  let jumlah = 0;
+  all.forEach((item) => (jumlah += item.saldo));
+  const angka =convertToRupiah(jumlah)
   return (
     <View>
       <View style={Styles.viewHeader}>
@@ -54,7 +84,15 @@ const Donasi = ({ navigation }) => {
                   marginTop: "2%",
                 }}
               >
-                {res.title}
+                {res.title === "Saldo Anda" ? 
+                <Text>
+                  {res.title}
+                  <Text> Rp.       
+                  {angka}</Text>
+                </Text>
+                :
+                res.title
+              }
               </Text>
             </View>
           </TouchableOpacity>
